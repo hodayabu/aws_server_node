@@ -54,6 +54,10 @@ app.use("/private", function(req, res,next){
 
 //---------------------------------------------------------------------------------
 
+app.get('/', function(req,res){
+    res.send("Students bank is runing")
+})
+
 app.post('/login',function(req,res){
     //TO-DO check validity of parameters
     DButilsAzure.execQuery("select * from users where user_name= '" + req.body.userName+ "' and password='" + req.body.password+ "' " )
