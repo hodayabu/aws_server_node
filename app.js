@@ -687,7 +687,7 @@ app.use('/private/createPersonalDetails', function(req,res){
 
 app.use('/getUserInformation' , function(req,res) {
     
-    userName='Avi'
+    userName=req.body.userName
 
     DButilsAzure.execQuery("select * from users where user_name='"+userName+"'")
     .then( function(result){
