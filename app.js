@@ -7,7 +7,7 @@ const paypalReciever = require('paypal-rest-sdk');
 var app = express();
 var DButilsAzure = require('./DButils');
 app.use(express.json());
-var port = 3000;
+var port = process.env.port;
 const jwt = require("jsonwebtoken");
 const {spawn} = require('child_process');
 secret = "gil&hodaya";
