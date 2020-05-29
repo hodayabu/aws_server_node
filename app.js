@@ -705,7 +705,7 @@ app.use('/getUserInformation' , function(req,res) {
 
 app.set('view engine', 'ejs');
 
-
+//route paypal payment
 app.post('/pay', (req, res) => {
     console.log("insert pay")
     loanAmount=req.body.amount;
