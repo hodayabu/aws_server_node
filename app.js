@@ -717,8 +717,8 @@ app.post('/pay', (req, res) => {
           "payment_method": "paypal"
       },
       "redirect_urls": {
-          "return_url": "http://192.168.1.13:3000/success",
-          "cancel_url": "http://192.168.1.13:3000/cancel"
+          "return_url": "http://sbserver-env.eba-ppt5gwe6.us-east-2.elasticbeanstalk.com/success",
+          "cancel_url": "http://sbserver-env.eba-ppt5gwe6.us-east-2.elasticbeanstalk.com/cancel"
       },
       "transactions": [{
           "item_list": {
@@ -826,8 +826,8 @@ app.post('/payBack', (req, res) => {
           "payment_method": "paypal"
       },
       "redirect_urls": {
-          "return_url": "http://192.168.1.13:3000/successBack",
-          "cancel_url": "http://192.168.1.13:3000/cancel"
+          "return_url": "http://sbserver-env.eba-ppt5gwe6.us-east-2.elasticbeanstalk.com/successBack",
+          "cancel_url": "http://sbserver-env.eba-ppt5gwe6.us-east-2.elasticbeanstalk.com/cancel"
       },
       "transactions": [{
           "item_list": {
