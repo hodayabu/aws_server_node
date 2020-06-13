@@ -1330,25 +1330,31 @@ app.get('/python', (req, res) => {
 
 
    function rankML(userName, income, age, minus, parents, gpa, bank_loans, facebook, active, friends, instagam, amount,callback){
-    var dataToSend;
-    const python = spawn('python', ['script.py', income, age, minus, parents, 1, bank_loans, facebook, active, friends, instagam, amount]);
+    try{
+        var dataToSend;
+        const python = spawn('python', ['script.py', income, age, minus, parents, 1, bank_loans, facebook, active, friends, instagam, amount]);
+        console.log(python+ "%%%%%%%%%%%%%%%%%%%%%%%%")
+        // collect data from script
+        python.stdout.on('data', function (data) {
+            console.log('Pipe data from python script ...');
+            dataToSend = data.toString();
+            console.log(dataToSend+'    Pipe data from python script ...');
+        });
+        // in close event we are sure that stream from child process is closed
+        python.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+        if(dataToSend == null){
+            console.log("the data to send is null on line 1347")
+            dataToSend=3}
+        callback(dataToSend)
+        });
 
-    // collect data from script
-    python.stdout.on('data', function (data) {
-        console.log('Pipe data from python script ...');
-        dataToSend = data.toString();
-        console.log(dataToSend+'    Pipe data from python script ...');
-    });
-    // in close event we are sure that stream from child process is closed
-    python.on('close', (code) => {
-    console.log(`child process close all stdio with code ${code}`);
-    // send data to browser
-    if(dataToSend == null){
-        console.log("the data to send is null on line 1347")
-        dataToSend=3}
-    callback(dataToSend)
-    });
-
+    }
+    catch(err){
+        console.log("there was an error 1356")
+    }
+    
    }
     
    
