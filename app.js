@@ -16,7 +16,6 @@ var loanId=0;//default value of id
 var loanIdBack=0;
 
 
-
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
     'client_id': 'AQ0JN4T7VkJQ1JLB4EsUNDaX-2t5kCGX8ydtl3bAFP1BMHuLyPPhBy4UKxkUTXOhwKIVGigTv1FFisLA',
@@ -271,6 +270,7 @@ app.use('/private/insertPostedLoan',function(req,res){
 
     userName = req.decoded.name;
     var full_amount = req.body.amount;
+    console.log("the full amount from 273 is  "+full_amount)
     var amount = categoryAmount(full_amount)
 
     DButilsAzure.execQuery("select * from user_details where user_name='"+userName+"'")
@@ -1160,6 +1160,7 @@ function categoryAmount(full_amount){
 
 
 function clculateRank(userName, income, age, minus, parents, gpa, bank_loans, facebook, active, friends, instagam, amount, callback){
+    console.log("####################got to 1163")
     weigthML = 0.8
     weigthReview = 0.2
     rankRev = 0
@@ -1342,7 +1343,9 @@ app.get('/python', (req, res) => {
     python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`);
     // send data to browser
-    if(dataToSend == null){dataToSend=3}
+    if(dataToSend == null){
+        console.log("the data to send is null on line 1347")
+        dataToSend=3}
     callback(dataToSend)
     });
 
