@@ -1358,6 +1358,7 @@ app.get('/python', (req, res) => {
             }
             else dataToSend=3
         }
+        console.log("the data to send is "+dataToSend)
         callback(dataToSend)
         });
 
