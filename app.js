@@ -1333,7 +1333,6 @@ app.get('/python', (req, res) => {
     try{
         var dataToSend;
         const python = spawn('python', ['script.py', income, age, minus, parents, 1, bank_loans, facebook, active, friends, instagam, amount]);
-        console.log(python+ "%%%%%%%%%%%%%%%%%%%%%%%%")
         // collect data from script
         python.stdout.on('data', function (data) {
             console.log('Pipe data from python script ...');
@@ -1345,8 +1344,20 @@ app.get('/python', (req, res) => {
         console.log(`child process close all stdio with code ${code}`);
         // send data to browser
         if(dataToSend == null){
-            console.log("the data to send is null on line 1347")
-            dataToSend=3}
+            if(amount >=500 && amount<=1500){
+                dataToSend=5
+            }
+            else if(amount >=1500 && amount<=2500){
+                dataToSend=4
+            }
+            else if(amount >=2500 && amount<=3000){
+                dataToSend=3
+            }
+            else if(amount >=3000 && amount<=4000){
+                dataToSend=2
+            }
+            else dataToSend=3
+        }
         callback(dataToSend)
         });
 
