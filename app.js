@@ -279,7 +279,7 @@ app.use('/private/insertPostedLoan',function(req,res){
         DButilsAzure.execQuery("select gpa from users where user_name='"+userName+"'")
         .then(function(resu){   
 
-        clculateRank(userName, result[0].month_income, result[0].age ,result[0].minus ,result[0].parents_support ,resu[0].gpa ,result[0].bank_loans, 1, result[0].facebook_active, result[0].facebook_friends, result[0].instagrem_account, amount, function(user_rank){
+        clculateRank(userName, result[0].month_income, result[0].age ,result[0].minus ,result[0].parents_support ,resu[0].gpa ,result[0].bank_loans, 1, result[0].facebook_active, result[0].facebook_friends, result[0].instagrem_account, full_amount, function(user_rank){
             console.log("The rank is:      "+user_rank)
 
             DButilsAzure.execQuery("select interest_precent from interests where min_rank<= "+user_rank+" and max_rank>"+user_rank)
@@ -1332,7 +1332,7 @@ app.get('/python', (req, res) => {
    function rankML(userName, income, age, minus, parents, gpa, bank_loans, facebook, active, friends, instagam, amount,callback){
     try{
         var dataToSend;
-        const python = spawn('python', ['script.py', income, age, minus, parents, 1, bank_loans, facebook, active, friends, instagam, amount]);
+        const python = spawn('python', ['script.py', income, age, minus, parents, 1, bank_loans, facebook, active, friends, instagam, 3]);
         // collect data from script
         python.stdout.on('data', function (data) {
             console.log('Pipe data from python script ...');
